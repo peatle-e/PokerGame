@@ -8,6 +8,7 @@
 import Foundation
 
 struct TrumpCardDeck : Deck {
+    
     var trumpCards: [TrumpCard] = TrumpCard.whole()
     
     mutating func drawing(_ number: Int = 1) -> [TrumpCard] {
@@ -16,13 +17,9 @@ struct TrumpCardDeck : Deck {
         return cards
     }
     
-    mutating func refill() {
-        trumpCards = TrumpCard.whole()
-    }
+    mutating func refill() { trumpCards = TrumpCard.whole() }
     
-    mutating func shuffle() {
-        trumpCards.shuffle()
-    }
+    mutating func shuffle() { trumpCards.shuffle() }
 }
 
 protocol Deck {
@@ -40,8 +37,7 @@ struct TrumpCard: Hashable, Comparable  {
     let rank: Rank
     
     func convert() -> String {
-        guard rank != .ace else { return "A" + suit.convert() }
-        return "\(rank.rawValue)" + suit.convert()
+        rank != .ace ? ("\(rank.rawValue)" + suit.convert()) : ("A" + suit.convert())
     }
     
     static func whole() -> [TrumpCard] {

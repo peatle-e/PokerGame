@@ -56,7 +56,7 @@ struct SevenPokerTable: PokerGameTable {
     
     func printPlayersCard() {
         players.forEach {
-            print("플레이어: " + "\($0.key.name)" + "/  패: " + "\($0.value.cards.sorted(by: {$0.rank.rawValue < $1.rank.rawValue }) .map { $0.convert() } )" )
+            print("플레이어: " , $0.key , "/  패: " , $0.value )
         }
     }
 }
@@ -143,6 +143,7 @@ struct Pod {
 }
 
 struct SevenPokerHand: PokerHand {
+    var description: String { cards.sorted(by: {$0.rank.rawValue < $1.rank.rawValue }).map { $0.convert() } .joined(separator: ", ") }
     
     var cards: [TrumpCard] = []
     
@@ -157,7 +158,8 @@ struct SevenPokerHand: PokerHand {
 
 }
 
-protocol PokerHand: Hashable {
+protocol PokerHand: Hashable, CustomStringConvertible {
+    
     var cards: [TrumpCard] {get}
     
     mutating func getCard(_ gettedCards: [TrumpCard])

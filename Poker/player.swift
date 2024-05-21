@@ -7,7 +7,9 @@
 
 import Foundation
 
-class Player: Hashable {
+class Player: Hashable, CustomStringConvertible {
+    var description: String { self.name }
+    
     private var money: Int
     var isPlaying: Bool
     var name: String
