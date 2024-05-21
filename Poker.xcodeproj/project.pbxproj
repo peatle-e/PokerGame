@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4F8185DF2BF6238C002DECEC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8185DE2BF6238C002DECEC /* main.swift */; };
+		4F979D7E2BFB110100865FE1 /* pokerSystems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F979D7D2BFB110100865FE1 /* pokerSystems.swift */; };
+		4F979D802BFB26BF00865FE1 /* player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F979D7F2BFB26BF00865FE1 /* player.swift */; };
+		4F979D872BFB27FB00865FE1 /* card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F979D862BFB27FB00865FE1 /* card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,9 @@
 /* Begin PBXFileReference section */
 		4F8185DB2BF6238C002DECEC /* Poker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Poker; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F8185DE2BF6238C002DECEC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		4F979D7D2BFB110100865FE1 /* pokerSystems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pokerSystems.swift; sourceTree = "<group>"; };
+		4F979D7F2BFB26BF00865FE1 /* player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = player.swift; sourceTree = "<group>"; };
+		4F979D862BFB27FB00865FE1 /* card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,9 @@
 			isa = PBXGroup;
 			children = (
 				4F8185DE2BF6238C002DECEC /* main.swift */,
+				4F979D7D2BFB110100865FE1 /* pokerSystems.swift */,
+				4F979D7F2BFB26BF00865FE1 /* player.swift */,
+				4F979D862BFB27FB00865FE1 /* card.swift */,
 			);
 			path = Poker;
 			sourceTree = "<group>";
@@ -121,6 +130,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F8185DF2BF6238C002DECEC /* main.swift in Sources */,
+				4F979D802BFB26BF00865FE1 /* player.swift in Sources */,
+				4F979D7E2BFB110100865FE1 /* pokerSystems.swift in Sources */,
+				4F979D872BFB27FB00865FE1 /* card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
