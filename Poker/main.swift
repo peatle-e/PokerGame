@@ -12,7 +12,6 @@ let kang = Player(name: "kang", money: 5000, isPlaying: true)
 
 var casinoSevenPokerTable1 = SevenPokerTable(ante: 500)
 
-
 casinoSevenPokerTable1.addPlayers(lee, kim, park, kang)
 
 casinoSevenPokerTable1.opening()

@@ -35,19 +35,19 @@ private protocol PokerGameTable {
 
 struct SevenPokerTable: PokerGameTable {
     
-    fileprivate var deck: TrumpCardDeck = TrumpCardDeck()
+    private(set) var deck: TrumpCardDeck = TrumpCardDeck()
     
-    var ante: Int
+    private(set) var ante: Int
     
-    var pod: Pod = Pod()
+    private(set) var pod: Pod = Pod()
     
-    var players: [Player] = []
+    private(set) var players: [Player] = []
     
     var participating: [Player] {
         Array<Player>(self.players.filter { $0.isPlaying })
     }
     
-    var round: Round?
+    private(set) var round: Round?
     
     
     init(ante: Int) { self.ante = ante }
@@ -92,9 +92,9 @@ struct SevenPokerTable: PokerGameTable {
 
 struct Pod {
     
-    var main: Int = 0
+    private(set) var main: Int = 0
     
-    var side: Int = 0
+    private(set) var side: Int = 0
     
     mutating func addMain(_ money: Int) { self.main += money }
     

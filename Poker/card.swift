@@ -22,7 +22,7 @@ private protocol Deck {
 
 struct TrumpCardDeck : Deck {
     
-    fileprivate var trumpCards: [TrumpCard] = TrumpCard.whole()
+    private(set) var trumpCards: [TrumpCard] = TrumpCard.allCases
     
     mutating func drawing(_ number: Int) -> [TrumpCard] {
         var cards: [TrumpCard] = []
@@ -30,7 +30,7 @@ struct TrumpCardDeck : Deck {
         return cards
     }
     
-    mutating func refill() { trumpCards = TrumpCard.whole() }
+    mutating func refill() { trumpCards = TrumpCard.allCases }
     
     mutating func shuffle() { trumpCards.shuffle() }
 }
@@ -39,30 +39,31 @@ struct TrumpCardDeck : Deck {
 
 
 
-struct TrumpCard: Hashable, Comparable  {
+struct TrumpCard: Hashable, Comparable, CaseIterable  {
     
     let suit: Suit
     
     let rank: Rank
     
-    func convert() -> String { rank.convert() + suit.convert() }
-    
-    static func whole() -> [TrumpCard] {
-        var whole: [TrumpCard] = []
-        for suit in Suit.allCases() {
-            for rank in Rank.allCases() {
-                whole.append(TrumpCard(suit: suit, rank: rank))
+    static var allCases: [TrumpCard] {
+                var cases: [TrumpCard] = []
+                for suit in Suit.allCases {
+                    for rank in Rank.allCases {
+                        cases.append(TrumpCard(suit: suit, rank: rank))
+                    }
+                }
+                return cases
             }
-        }
-        return whole
-    }
+    
+    func convert() -> String { rank.convert() + suit.convert() }
     
     static func < (lhs: TrumpCard, rhs: TrumpCard) -> Bool {
         lhs.rank == rhs.rank ? lhs.suit < rhs.suit : lhs.rank < rhs.rank
     }
 }
 
-enum Suit: Int, Comparable {
+enum Suit: Int, Comparable, CaseIterable {
+    
     case clover  = 1
     case heart   = 2
     case diamond = 3
@@ -81,12 +82,9 @@ enum Suit: Int, Comparable {
         return lhs.rawValue < rhs.rawValue
     }
 
-    static func allCases() -> [Suit] {
-        [.spade, .diamond, .heart, .spade]
-    }
 }
 
-enum Rank: Int, Comparable {
+enum Rank: Int, Comparable, CaseIterable {
     case ace    = 1
     case two    = 2
     case three  = 3
@@ -110,11 +108,4 @@ enum Rank: Int, Comparable {
         else if rhs == .ace { return true }
         else { return lhs.rawValue < rhs.rawValue }
     }
-    
-    static func allCases() -> [Rank] {
-        [.ace, .two, .three, .four, .five,
-         .six, .seven, .eight, .nine, .ten,
-         .j, .q, .k]
-    }
 }
-

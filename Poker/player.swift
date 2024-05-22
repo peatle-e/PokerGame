@@ -11,11 +11,11 @@ class Player:  CustomStringConvertible {
     
     var hand = SevenPokerHand()
     
-    var money: Int
+    private(set) var money: Int
     
-    var isPlaying: Bool
+    private(set) var isPlaying: Bool
     
-    var name: String
+    private(set) var name: String
     
     var description: String { self.name }
     
@@ -42,7 +42,7 @@ private protocol PokerHand: Hashable, CustomStringConvertible {
 
 struct SevenPokerHand: PokerHand {
     
-    fileprivate var cards: [TrumpCard] = []
+    private(set) var cards: [TrumpCard] = []
     
     var description: String {
         cards.sorted { $0.rank.rawValue < $1.rank.rawValue }
@@ -55,7 +55,7 @@ struct SevenPokerHand: PokerHand {
     mutating func returnCard() { self.cards = [] }
     
     
-    func handRanking() -> (handRanking: PokerRanking, kicker: TrumpCard) {                              //임시
+    func handRanking() -> (handRanking: PokerRanking, kicker: TrumpCard) {            
         (PokerRanking.highCard ,TrumpCard(suit: .clover, rank: .ace))
     }
     
