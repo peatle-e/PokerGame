@@ -5,19 +5,20 @@
 //  Created by 이재영 on 2024/05/20.
 //
 import Foundation
+let lee = Player(name: "lee", money: 5000, isPlaying: true)
+let kim = Player(name: "kim", money: 5000, isPlaying: true)
+let park = Player(name: "park", money: 5000, isPlaying: true)
+let kang = Player(name: "kang", money: 5000, isPlaying: true)
 
-let player1 = Player(name: "player1", money: 5000, isPlaying: true)
-let player2 = Player(name: "player2", money: 5000, isPlaying: true)
-let player3 = Player(name: "player3", money: 5000, isPlaying: true)
-let player4 = Player(name: "player4", money: 5000, isPlaying: true)
+var casinoSevenPokerTable1 = SevenPokerTable(ante: 500)
 
-var sevenPorkerTable = SevenPokerTable(ante: 500)
 
-sevenPorkerTable.addPlayers(player1, player2, player3, player4)
+casinoSevenPokerTable1.addPlayers(lee, kim, park, kang)
 
-sevenPorkerTable.opening()
+casinoSevenPokerTable1.opening()
 
-sevenPorkerTable.dealing()
+casinoSevenPokerTable1.dealing()
 
-sevenPorkerTable.printPlayersCard()
+casinoSevenPokerTable1.printPlayersCard()
+
 

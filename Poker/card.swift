@@ -7,11 +7,24 @@
 
 import Foundation
 
+private protocol Deck {
+    
+    var trumpCards: [TrumpCard] {get}
+    
+    mutating func drawing(_ number: Int) -> [TrumpCard]
+    
+    mutating func refill()
+    
+    mutating func shuffle()
+}
+
+
+
 struct TrumpCardDeck : Deck {
     
-    var trumpCards: [TrumpCard] = TrumpCard.whole()
+    fileprivate var trumpCards: [TrumpCard] = TrumpCard.whole()
     
-    mutating func drawing(_ number: Int = 1) -> [TrumpCard] {
+    mutating func drawing(_ number: Int) -> [TrumpCard] {
         var cards: [TrumpCard] = []
         for _ in 1...number { cards.append(trumpCards.removeLast()) }
         return cards
@@ -22,36 +35,30 @@ struct TrumpCardDeck : Deck {
     mutating func shuffle() { trumpCards.shuffle() }
 }
 
-protocol Deck {
-    var trumpCards: [TrumpCard] {get}
-    
-    mutating func drawing(_ number: Int) -> [TrumpCard]
-    
-    mutating func refill()
-    
-    mutating func shuffle()
-}
+
+
+
 
 struct TrumpCard: Hashable, Comparable  {
+    
     let suit: Suit
+    
     let rank: Rank
     
-    func convert() -> String {
-        rank != .ace ? ("\(rank.rawValue)" + suit.convert()) : ("A" + suit.convert())
-    }
+    func convert() -> String { rank.convert() + suit.convert() }
     
     static func whole() -> [TrumpCard] {
         var whole: [TrumpCard] = []
         for suit in Suit.allCases() {
-            for numberOfCard in Rank.allCases() {
-                whole.append(TrumpCard(suit: suit, rank: numberOfCard))
+            for rank in Rank.allCases() {
+                whole.append(TrumpCard(suit: suit, rank: rank))
             }
         }
         return whole
     }
     
     static func < (lhs: TrumpCard, rhs: TrumpCard) -> Bool {
-        lhs.rank != rhs.rank ? lhs.rank < rhs.rank : lhs.suit < rhs.suit
+        lhs.rank == rhs.rank ? lhs.suit < rhs.suit : lhs.rank < rhs.rank
     }
 }
 
@@ -94,11 +101,14 @@ enum Rank: Int, Comparable {
     case q      = 12
     case k      = 13
     
+    func convert() -> String {
+        self == .ace ? "A" : "\(self.rawValue)"
+    }
+    
     static func < (lhs: Rank, rhs: Rank) -> Bool {
-        guard lhs != .ace && rhs != .ace else {
-            return !(lhs.rawValue < rhs.rawValue)
-        }
-        return lhs.rawValue < rhs.rawValue
+        if lhs == .ace { return false }
+        else if rhs == .ace { return true }
+        else { return lhs.rawValue < rhs.rawValue }
     }
     
     static func allCases() -> [Rank] {
